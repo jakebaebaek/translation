@@ -1,0 +1,202 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f0f0;
+}
+.container {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+container * {
+  outline: auto rgb(107, 107, 107);
+  outline: auto rgb(107, 107, 107);
+
+}
+.leftSide {
+  flex: 4;
+  display: flex;
+  flex-direction: column;
+  padding-right: 20px;
+  width: 600px;
+}
+.rightSide {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-conference {
+  flex: 3;
+  background-image: url('https://via.placeholder.com/640x360');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.video {
+  padding: 10px 10px 10px 10px;
+  border-radius: 20px;
+  width: 80%;
+  height: 98%;
+  object-fit: cover;
+}
+.sub {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  color: white;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 5px;    
+}
+.BtnAndLang {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:space-between
+}
+.recogStartBtn {
+  font-size: xx-large;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(182, 182, 253);
+  border-radius: 20px;
+  background-color: rgb(70, 144, 254);
+  color: rgb(235, 235, 235);
+  padding: 10px 20px 10px 20px;
+}
+.text-recognition {
+  position: relative;
+  flex: 1.5;
+  background-color: white;
+  margin-bottom: 20px;
+  padding: 40px;
+  box-sizing: border-box;
+  overflow: scroll;
+}
+.text-recognition p {
+  margin: 0;
+  line-height: 1.5;
+  font-size: x-large;
+}
+.language-select {
+  position: relative;
+  font-size: x-large;
+  margin: 10px 0 10px 10px;
+    >select {
+      font-size: x-large;
+    }
+}
+.patient-info {
+  flex: 1;
+  display: flex;
+  margin-bottom: 20px;
+}
+.patient-info > div {
+  flex: 1;
+  background-color: white;
+  margin-right: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.patient-info > div:last-child {
+  margin-right: 0;
+}
+.conversation-history {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+    >h3 {
+      flex: 0.3;
+    }
+}
+/* Main Symptoms */
+.symptoms {
+  flex: 5;
+  display: flex;
+  flex-direction: column;
+  >ul {
+    max-height: 250px;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+}
+.symptoms ul {
+  flex: 4;
+}
+/* Main Symptoms 에서 input 과 button 을 담은 form */
+.sympform {
+  flex: 0.5;
+  display: flex;
+  flex-direction: row;
+}
+/* Main Symptoms 에서 INPUT 과 그 옆의 BUTTON */
+.sympInput { 
+  flex: 3;
+  border: 2px solid black;
+
+}
+.CCB {
+  flex: 1;
+  font-size: large;
+  background-color: rgb(61, 106, 255);
+  color: white;
+  border-color: white;
+  padding: 5px 25px 5px 25px;
+}
+/* Previous Recap */
+.previous {
+  flex:1.45;
+  align-items: center;
+  background-color: white;
+  padding: 20px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+/* end call % reconnect */
+.btns {
+  flex: 0.1;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 20px;
+  >button {
+      font-size: xx-large;
+      background-color: rgb(61, 106, 255);
+      color: white;
+      border-radius: 10px;
+      border-color: white;
+      padding: 5px 25px 5px 25px;
+  }
+}
+.end {
+  flex: 2.5;
+}
+.recon {
+  flex: 1;
+}  
+.patient-details {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
+    > div {
+        margin-bottom: 10px;
+    }
+}
+.patient-detail {
+  background-color: #e6e6e6;
+  padding: 5px 10px ;
+  border-radius: 5px;
+}
+.video-conference, .patient-info >div, .conversation-history, .text-recognition, .previous {
+  border: 1px solid #eaeaea;
+  border-radius: 15px;
+}
