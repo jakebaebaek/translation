@@ -2,6 +2,7 @@ import ZoomVideo from '@zoom/videosdk';
 
 const sessionStartBtn = document.querySelector('.sessionStartBtn');
 const video = document.querySelector('.video');
+const zoomVideo = ZoomVideo.createClient();
 
 let stream;
 
@@ -12,7 +13,7 @@ sessionStartBtn.addEventListener('click', function() {
 async function fetchToken(SessionName) {
     try {
       // 서버 엔드포인트에게 JWT 토큰을 요청합니다. - request
-      const response = await fetch("http://localhost:4000", {
+      const response = await fetch("https://enigmatic-garden-56462-8b6392dd24e0.herokuapp.com/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",  
@@ -41,7 +42,6 @@ async function fetchToken(SessionName) {
 async function joinSession() {
     try { 
         
-        const zoomVideo = ZoomVideo.createClient();
 
         // SDK 초기화
         await zoomVideo.init('en-US');
@@ -58,10 +58,34 @@ async function joinSession() {
         });
 
         // 비디오 및 오디오 스트림 시작
-        stream.startVideo().then(() => {
-            stream.renderVideo(video, zoomVideo.getCurrentUserInfo().userId, 2580, 1080, 10, 10, 10)
-        }).then(() => stream.startAudio());        
-
+        stream.startVideo({ hd:true }).then(() => {
+          stream.renderVideo(video, zoomVideo.getCurrentUserInfo().userId, 2580, 1080, 10, 10, 10)
+      }).then(() => stream.startAudio());   
+      
+      const alluser = zoomVideo.getAllUser();
+      console.log(alluser)
+      // await zoomVideo.join(topic, token, userName, password)
+      // stream = client.getMediaStream()
+      // zoomVideo.getAllUser().forEach(async (user) => {
+      //   if (user.bVideoOn) {
+      //     let userVideo = await stream.attachVideo(user.userId, 3)
+      
+      //     document.querySelector('video-player-container').appendChild(userVideo)
+      //   }
+      // });
+      
+      // 화면 공유 기능 
+      // if (stream.isStartShareScreenWithVideoElement()) {
+      //   await stream.startShareScreen(
+      //     document.querySelector('#my-screen-share-content-video')
+      //   )
+      //   // screen share successfully started and rendered
+      // } else {
+      //   await stream.startShareScreen(
+      //     document.querySelector('#my-screen-share-content-canvas')
+      //   )
+      //   // screen share successfully started and rendered
+      // };
     } catch (error) {
         console.error('Joining session failed', error);
     }
