@@ -2,6 +2,7 @@ let symptoms_ul = document.querySelector('.symptoms ul');
 let inputValue = document.querySelector('.sympInput');
 const symptoms_btn = document.querySelector('.CCB');
 const deleteBTN = document.querySelectorAll('#delete');
+const closeBtn = document.querySelector('.windowCloseBtn');
 
 deleteBTN.forEach(e => e.innerHTML='❌')
 function paintInput (e) {
@@ -26,4 +27,6 @@ function validate(data) {
     return data;
 }
 
-
+closeBtn.onclick = function (event) {
+    window.close();
+}

@@ -77,6 +77,18 @@ video-player {
   background-color: rgb(70, 144, 254);
   color: rgb(235, 235, 235);
   padding: 10px 20px 10px 20px;
+  width: 400px;
+}
+.windowCloseBtn {
+  font-size: xx-large;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(182, 182, 253);
+  border-radius: 20px;
+  background-color: rgb(254, 70, 70);
+  color: rgb(235, 235, 235);
+  padding: 10px 20px 10px 20px;
+  width: 400px;
 }
 .text-recognition {
   position: relative;
