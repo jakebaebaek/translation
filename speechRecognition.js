@@ -49,15 +49,23 @@ recognition.onresult = function (event) {
 
   // POST 요청을 보내고, 그 응답을 기반으로 GET 요청을 합니다.
   event.results[event.resultIndex].isFinal ? (
-    postData(postDataUrl, {
+    postData(postTransDataUrl, {
       text: textedSpeech,
       lang: currentLang
     })
-    .then(postResponse => {
-      console.log('POST 요청의 응답:', postResponse);
-      updateDisplay(textedSpeech, postResponse.translated_text);
-      synthesizeBtn(postResponse.translated_text);
-      return postResponse;
+    .then(res => {
+      console.log('POST 요청의 응답:', res);
+      if (res.translated_text && res.audio_data) {
+        // 번역된 텍스트를 업데이트합니다.
+        updateDisplay(textedSpeech, res.translated_text);
+    
+        // Base64 오디오 데이터를 디코딩하여 재생합니다.
+        const audioData = res.audio_data;
+        const audio = new Audio('data:audio/mp3;base64,' + audioData);
+        audio.play();
+      } else {
+        console.error('응답에 필요한 데이터가 없습니다.');
+      }
     })
     .catch(error => {
       console.error('Error:', error);
@@ -86,41 +94,34 @@ function scrollToBottom(element) {
 }
 
 // transAPI.py 와 연결하는 Fetch 
+// async function postData(url, data) {
+//   return fetch(url, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(data),
+//   })
+//   .then(response => response.json());
+// }
+
+
 async function postData(url, data) {
   return fetch(url, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data),
+    body: JSON.stringify(data)
   })
-  .then(response => response.json());
-}
-
-// Google TTS 기능을 사용하는 함수
-async function synthesizeBtn(text) {
-  try {
-    const response = await fetch('http://127.0.0.1:8000/synthesize', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ text })
-    });
-
-    if (response.ok) {
-      console.log(response);
-      const blob = await response.blob();
-      const url = URL.createObjectURL(blob);
-      audioOutput.src = url;
-      audioOutput.play();
-    } else {
-      console.error('Error synthesizing speech:', response.statusText);
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok ' + response.statusText);
     }
-  } catch (error) {
-    console.error('Error:', error);
-  }
+    return response.json();
+  })
+  .catch(error => console.error('Error:', error));
 }
 
-const postDataUrl = 'http://127.0.0.1:8000/translate';
+const postTransDataUrl = 'http://127.0.0.1:8000//translate_and_synthesize';
 const getDataUrl = 'http://127.0.0.1:8000/get-endpoint';
