@@ -93,19 +93,6 @@ function scrollToBottom(element) {
   element.scrollTop = element.scrollHeight;
 }
 
-// transAPI.py 와 연결하는 Fetch 
-// async function postData(url, data) {
-//   return fetch(url, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(data),
-//   })
-//   .then(response => response.json());
-// }
-
-
 async function postData(url, data) {
   return fetch(url, {
     method: 'POST',
