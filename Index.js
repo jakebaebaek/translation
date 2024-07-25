@@ -1,5 +1,4 @@
 let symptoms_ul = document.querySelector('.symptoms ul');
-let symptoms_form = document.querySelector('.sympform');
 let inputValue = document.querySelector('.sympInput');
 const symptoms_btn = document.querySelector('.CCB');
 const deleteBTN = document.querySelectorAll('#delete');
@@ -27,5 +26,4 @@ function validate(data) {
     return data;
 }
 
-symptoms_form.addEventListener('submit', e => paintInput(e));
 

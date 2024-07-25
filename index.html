@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telemedicine Video Conference</title>
+    <title>DangJin Robot Translation</title>
     <link href="./main.css" rel="stylesheet">
     <script type="module" src="./session.js"></script>
 </head>
@@ -14,12 +14,6 @@
     <div class="container">
 
         <div class="leftSide">
-            <div class="video-conference">
-            <video class="video"></video>
-                <p class="sub"> subtitle will be display </p>
-            </div>
-            <div>
-                <video-player-container></video-player-container>            </div>
             <div class="BtnAndLang">
                 <div class="recogLang">
                     <div class="language-select">
@@ -48,77 +42,17 @@
                     </div>    
                 </div>
                 <div>
-                    <audio id="audio-output" controls></audio>
-                    <button class="sessionStartBtn">Session Start</button>
                     <button class="recogStartBtn">Voice Recognition Start</button>
                 </div>
             </div>
-                <div class="text-recognition">
-                </div>
+            <div class="receivedResult"></div>
+                <h1>Received Text</h1>
+                <div id="RecevedText" class="text-recognition"></div>
+                <h1>Tranlsated Text</h1>
+                <div id="TranslatedText" class="text-recognition"></div>
         </div>
 
-        <div class="rightSide">
-            <div class="patient-info">
-                <div>
-                    <h3>Patient Details</h3>
-                    <div class="patient-details">
-                        <div class="patient-detail">Name: John Doe</div>
-                        <div class="patient-detail">Age: 30</div>
-                        <div class="patient-detail">Gender: Male</div>
-                        <div class="patient-detail">Blood Type: A+</div>
-                        <div class="patient-detail">Patient ID: 123456</div>
-                        <div class="patient-detail">Nationality: USA</div>
-                        <div class="patient-detail">Blood Pressure: 120/80</div>
-                        <div class="patient-detail">Pulse: 70 bpm</div>
-                        <div class="patient-detail">Temperature: 36.5°C</div>
-                        <div class="patient-detail">Weight: 70 kg</div>
-                        <div class="patient-detail">Height: 180 cm</div>
-                    </div>
-                </div>
-            </div>
-            <div class="conversation-history">
-                <h3>Main Symptoms</h3>
-                <div class="symptoms">
-                    <ul>
-                        <label>
-                            <li>Headache for a week</li><button id="delete"></button>
-                        </label>
-                        <label>
-                            <li>Persistent cough</li><button id="delete"></button>
-                        </label>
-                        <label>
-                            <li>Fever about 40 degrees</li><button id="delete"></button>
-                        </label>
-                        <label>
-                            <li>Diarrhea 3 times</li><button id="delete"></button>
-                        </label>
-                    </ul>
-                    <form class="sympform">
-                        <input class="sympInput"></input>
-                        <button class="CCB">Submit</button>
-                    </form>
-                </div>
-            </div>
-            <div class="previous">
-                <h3>Previous Recap</h3>
-                <div class="symptoms">
-                    <ul>
-                        <li>37.0 degree</li>
-                        <li>light headache</li>
-                        <li>The patient is reluctant to eat</li>
-                        <li>lost weight about 3kg</li>
-                        <li>Sleep disturbances and reduced appetite observed</li>
-                        <li>Episodes of dizziness, particularly upon standing</li>
-                        <li>Expresses concern about recent symptom development</li>
-                    </ul>
-                </div>
-            </div>
 
-            <div class="btns">
-                <button class="end">End Call</button>
-                <button class="recon">Reconnect</button>
-            </div>
-        </div>
     </div>
     <script src="https://apis.google.com/js/api.js"></script>
     <script src="./Index.js"></script>

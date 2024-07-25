@@ -4,9 +4,11 @@ var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEv
 const text_recognition = document.querySelector(".text-recognition");
 const selectedLang = document.getElementById('lang-options');
 const input_lang = document.getElementById('input-langs');
-const subtitle = document.querySelector(".sub");
 const recogBtn = document.querySelector('.recogStartBtn');
 const audioOutput = document.getElementById('audio-output');
+const received = document.querySelector('.receivedResult');
+const recevedTextbox = document.getElementById('RecevedText');
+const TranslatedTextbox = document.getElementById('TranslatedText');
 
 let inut_langVal = input_lang.value;
 var recognition = new SpeechRecognition();
@@ -45,7 +47,7 @@ selectedLang.addEventListener('change', e => currentLang = e.target.value)
 
 recognition.onresult = function (event) {
   let textedSpeech = event.results[event.resultIndex][0].transcript; // 최신의 음성들 출력
-  subtitle.textContent = `Result received: ${textedSpeech}.`;
+  received.textContent = `Result received: ${textedSpeech}.`;
 
   // POST 요청을 보내고, 그 응답을 기반으로 GET 요청을 합니다.
   event.results[event.resultIndex].isFinal ? (
@@ -74,19 +76,41 @@ recognition.onresult = function (event) {
 };
 
 function updateDisplay(text, translated) {
-  const displayElement =
-    document.getElementById("transcriptDisplay") || document.createElement("p");
-  displayElement.id = "transcriptDisplay";
-  translated !== undefined ?
-    displayElement.innerHTML += text + '<br>' + translated + '<br>' :
-    displayElement.innerHTML += text + '<br>' + 'UNKNOWN TRANSLATION' + '<br>';
-  text_recognition.appendChild(displayElement);
+  // 이전 텍스트의 배경색 초기화
+  const previousReceived = recevedTextbox.querySelector('.highlight');
+  if (previousReceived) {
+    previousReceived.classList.remove('highlight');
+  }
+
+  const previousTranslated = TranslatedTextbox.querySelector('.highlight');
+  if (previousTranslated) {
+    previousTranslated.classList.remove('highlight');
+  }
+
+  // 새로 추가된 텍스트에 형광색 배경 적용
+  if (translated !== undefined) {
+    recevedTextbox.innerHTML += `<div class="highlight">${text}</div><br>`;
+    TranslatedTextbox.innerHTML += `<div class="highlight">${translated}</div><br>`;
+  } else {
+    recevedTextbox.innerHTML += `<div class="highlight">${text}</div><br>`;
+    TranslatedTextbox.innerHTML += `<div class="highlight">UNKNOWN TRANSLATION</div><br>`;
+  }
+
   const text_recogScroll = document.querySelector(".text-recognition");
-  scrollToBottom(text_recogScroll);
+  scrollToBottom(recevedTextbox);
+  scrollToBottom(TranslatedTextbox);
 }
+// CSS 스타일 정의
+const style = document.createElement('style');
+style.innerHTML = `
+  .highlight {
+    background-color: yellow; /* 형광색 배경 */
+  }
+`;
+document.head.appendChild(style);
 
 recognition.onerror = function (event) {
-  subtitle.textContent = "Error occurred in recognition: " + event.error;
+  text_recognition.textContent = "Error occurred in recognition: " + event.error;
 };
 
 function scrollToBottom(element) {
