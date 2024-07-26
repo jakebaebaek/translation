@@ -1,10 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from google.cloud import texttospeech
 from googletrans import Translator
 from flask_cors import CORS
 import io
 import base64
 import logging
+import threading
 
 app = Flask(__name__)
 CORS(app)
@@ -12,6 +13,11 @@ translator = Translator()
 
 logging.basicConfig(level=logging.DEBUG)
 
+@app.route('/')
+def index():
+    # 페이지가 열릴 때 Python 코드를 비동기로 실행
+    threading.Thread(target=translate_and_synthesize).start()
+    return render_template('index.html')
 
 @app.route('/translate_and_synthesize', methods=['POST'])
 def translate_and_synthesize():

@@ -1,12 +1,24 @@
 # translation_DangJin
+This project was created to demonstrate a robot during our visit to Dangjin. 
+The main feature of this project is the 'translation and interpretation' function, where language is translated and output in the order of STT (Speech-to-Text), Translation, and TTS (Text-to-Speech).
+Each function is implemented using the following packages:
 
+WebSpeech API (JavaScript environment, performs STT function)
+googletrans for Python (performs translation function)
+Google Cloud TTS (Python environment, performs TTS function)
 
 
 ## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+##### 1.requirements
+* python 3.8 
+* Google Cloud Developer ID (Payable)
+* gcloud CLI (to do Application Default Credentials)
+* googletrans==4.0.0-rc1 
+* flask , flaks-cors
+* Git (for clone the repository)
+```
+$git remote  
+```
 
 ## Add your files
 
