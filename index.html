@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DangJin Robot Translation</title>
+    <link href="./main.css" rel="stylesheet">
+    <script type="module" src="./session.js"></script>
+</head>
+
+<body>
+    
+    <div class="container">
+
+        <div class="leftSide">
+            <div class="BtnAndLang">
+                <div class="recogLang">
+                    <div class="language-select">
+                        Select Translation Language
+                        <select id="lang-options">
+                            <option value="en">English</option>
+                            <option value="ko">Korean</option>
+                            <option value="ja">Japanese</option>
+                            <option value="zh-CN">Chinese</option>
+                            <option value="id">Indonesian</option>
+                            <option value="ru">Russian</option>
+                            <option value="vi">Vietnamese</option>
+                        </select>
+                    </div>
+                    <div class="language-select">
+                        The language you will speak
+                        <select id="input-langs">
+                            <option value="en">English</option>
+                            <option value="ko">Korean</option>
+                            <option value="ja">Japanese</option>
+                            <option value="zh-CN">Chinese</option>
+                            <option value="id">Indonesian</option>
+                            <option value="ru">Russian</option>
+                            <option value="vi">Vietnamese</option>
+                        </select>
+                    </div>    
+                </div>
+                <div>
+                    <p><button class="recogStartBtn">Voice Recognition Start</button></p>
+                    <p><button class="windowCloseBtn">Close</button></p>
+                </div>
+            </div>
+            <div class="receivedResult"></div>
+                <h1>Received Text</h1>
+                <div id="RecevedText" class="text-recognition"></div>
+                <h1>Tranlsated Text</h1>
+                <div id="TranslatedText" class="text-recognition"></div>
+        </div>
+
+
+    </div>
+    <script src="https://apis.google.com/js/api.js"></script>
+    <script src="./Index.js"></script>
+    <script src="./speechRecognition.js"></script>
+</body>
+
+</html>
